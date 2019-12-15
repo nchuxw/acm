@@ -11,7 +11,7 @@ int main()
 	fpo = fopen("./kuangbin/problem_o.txt", "w+");
 	while(fgets(str, 1000, fpi) != NULL)
 	{
-		printf("%s", str);
+		// printf("%s", str);
 		len = strlen(str);
 		str[len - 1] = '\0';
 		if(str[0] == 'H' && str[1] == 'D' && str[2] == 'U')
