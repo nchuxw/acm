@@ -1,0 +1,418 @@
+https://vjudge.net/article/371
+
+专题一 简单搜索  https://vjudge.net/contest/65959
+POJ 1321 棋盘问题  http://poj.org/problem?id=1321
+POJ 2251 Dungeon Master  http://poj.org/problem?id=2251
+POJ 3278 Catch That Cow  http://poj.org/problem?id=3278
+POJ 3279 Fliptile  http://poj.org/problem?id=3279
+POJ 1426 Find The Multiple  http://poj.org/problem?id=1426
+POJ 3126 Prime Path  http://poj.org/problem?id=3126
+POJ 3087 Shuffle'm Up  http://poj.org/problem?id=3087
+POJ 3414 Pots  http://poj.org/problem?id=3414
+FZU 2150 Fire Game
+UVA 11624 Fire!
+POJ 3984 迷宫问题  http://poj.org/problem?id=3984
+HDU 1241 Oil Deposits  http://acm.hdu.edu.cn/showproblem.php?pid=1241
+HDU 1495 非常可乐  http://acm.hdu.edu.cn/showproblem.php?pid=1495
+HDU 2612 Find a way  http://acm.hdu.edu.cn/showproblem.php?pid=2612
+
+专题二 搜索进阶  https://vjudge.net/contest/65997
+HDU 1043 Eight  http://acm.hdu.edu.cn/showproblem.php?pid=1043
+HDU 3567 Eight II  http://acm.hdu.edu.cn/showproblem.php?pid=3567
+HDU 2181 哈密顿绕行世界问题  http://acm.hdu.edu.cn/showproblem.php?pid=2181
+HDU 3533 Escape  http://acm.hdu.edu.cn/showproblem.php?pid=3533
+HDU 1560 DNA sequence  http://acm.hdu.edu.cn/showproblem.php?pid=1560
+ZOJ 2477 Magic Cube
+HDU 3085 Nightmare Ⅱ  http://acm.hdu.edu.cn/showproblem.php?pid=3085
+HDU 1067 Gap  http://acm.hdu.edu.cn/showproblem.php?pid=1067
+HDU 2102 A计划  http://acm.hdu.edu.cn/showproblem.php?pid=2102
+HDU 3001 Travelling  http://acm.hdu.edu.cn/showproblem.php?pid=3001
+
+专题三 Dancing Links
+HUST 1017 Exact cover
+ZOJ 3209 Treasure Map
+HDU 2295 Radar  http://acm.hdu.edu.cn/showproblem.php?pid=2295
+FZU 1686 神龙的难题
+POJ 1084 Square Destroyer  http://poj.org/problem?id=1084
+POJ 3074 Sudoku  http://poj.org/problem?id=3074
+ZOJ 3122 Sudoku
+HDU 4069 Squiggly Sudoku  http://acm.hdu.edu.cn/showproblem.php?pid=4069
+HDU 3335 Divisibility  http://acm.hdu.edu.cn/showproblem.php?pid=3335
+HDU 4979 A simple math problem.  http://acm.hdu.edu.cn/showproblem.php?pid=4979
+HDU 5046 Airport  http://acm.hdu.edu.cn/showproblem.php?pid=5046
+
+专题四 最短路练习
+POJ 2387 Til the Cows Come Home  http://poj.org/problem?id=2387
+POJ 2253 Frogger  http://poj.org/problem?id=2253
+POJ 1797 Heavy Transportation  http://poj.org/problem?id=1797
+POJ 3268 Silver Cow Party  http://poj.org/problem?id=3268
+POJ 1860 Currency Exchange  http://poj.org/problem?id=1860
+POJ 3259 Wormholes  http://poj.org/problem?id=3259
+POJ 1502 MPI Maelstrom  http://poj.org/problem?id=1502
+POJ 3660 Cow Contest  http://poj.org/problem?id=3660
+POJ 2240 Arbitrage  http://poj.org/problem?id=2240
+POJ 1511 Invitation Cards  http://poj.org/problem?id=1511
+POJ 3159 Candies  http://poj.org/problem?id=3159
+POJ 2502 Subway  http://poj.org/problem?id=2502
+POJ 1062 昂贵的聘礼  http://poj.org/problem?id=1062
+POJ 1847 Tram  http://poj.org/problem?id=1847
+LightOJ 1074 Extended Traffic
+HDU 4725 The Shortest Path in Nya Graph  http://acm.hdu.edu.cn/showproblem.php?pid=4725
+HDU 3416 Marriage Match IV  http://acm.hdu.edu.cn/showproblem.php?pid=3416
+HDU 4370 0 or 1  http://acm.hdu.edu.cn/showproblem.php?pid=4370
+POJ 3169 Layout  http://poj.org/problem?id=3169
+
+专题五 并查集
+POJ 2236 Wireless Network  http://poj.org/problem?id=2236
+POJ 1611 The Suspects  http://poj.org/problem?id=1611
+HDU 1213 How Many Tables  http://acm.hdu.edu.cn/showproblem.php?pid=1213
+HDU 3038 How Many Answers Are Wrong  http://acm.hdu.edu.cn/showproblem.php?pid=3038
+POJ 1182 食物链  http://poj.org/problem?id=1182
+POJ 1417 True Liars  http://poj.org/problem?id=1417
+POJ 1456 Supermarket  http://poj.org/problem?id=1456
+POJ 1733 Parity game  http://poj.org/problem?id=1733
+POJ 1984 Navigation Nightmare  http://poj.org/problem?id=1984
+POJ 2492 A Bug's Life  http://poj.org/problem?id=2492
+POJ 2912 Rochambeau  http://poj.org/problem?id=2912
+ZOJ 3261 Connections in Galaxy War
+HDU 1272 小希的迷宫  http://acm.hdu.edu.cn/showproblem.php?pid=1272
+POJ 1308 Is It A Tree?  http://poj.org/problem?id=1308
+
+专题六 最小生成树
+POJ 1251 Jungle Roads  http://poj.org/problem?id=1251
+POJ 1287 Networking  http://poj.org/problem?id=1287
+POJ 2031 Building a Space Station  http://poj.org/problem?id=2031
+POJ 2421 Constructing Roads  http://poj.org/problem?id=2421
+ZOJ 1586 QS Network
+POJ 1789 Truck History  http://poj.org/problem?id=1789
+POJ 2349 Arctic Network  http://poj.org/problem?id=2349
+POJ 1751 Highways  http://poj.org/problem?id=1751
+POJ 1258 Agri-Net  http://poj.org/problem?id=1258
+POJ 3026 Borg Maze  http://poj.org/problem?id=3026
+POJ 1679 The Unique MST  http://poj.org/problem?id=1679
+HDU 1233 还是畅通工程  http://acm.hdu.edu.cn/showproblem.php?pid=1233
+HDU 1301 Jungle Roads  http://acm.hdu.edu.cn/showproblem.php?pid=1301
+HDU 1875 畅通工程再续  http://acm.hdu.edu.cn/showproblem.php?pid=1875
+
+专题七 线段树
+HDU 1166 敌兵布阵  http://acm.hdu.edu.cn/showproblem.php?pid=1166
+HDU 1754 I Hate It  http://acm.hdu.edu.cn/showproblem.php?pid=1754
+POJ 3468 A Simple Problem with Integers  http://poj.org/problem?id=3468
+POJ 2528 Mayor's posters  http://poj.org/problem?id=2528
+HDU 1698 Just a Hook  http://acm.hdu.edu.cn/showproblem.php?pid=1698
+ZOJ 1610 Count the Colors
+POJ 3264 Balanced Lineup  http://poj.org/problem?id=3264
+HDU 4027 Can you answer these queries?  http://acm.hdu.edu.cn/showproblem.php?pid=4027
+HDU 1540 Tunnel Warfare  http://acm.hdu.edu.cn/showproblem.php?pid=1540
+HDU 3974 Assign the task  http://acm.hdu.edu.cn/showproblem.php?pid=3974
+HDU 4578 Transformation  http://acm.hdu.edu.cn/showproblem.php?pid=4578
+HDU 4614 Vases and Flowers  http://acm.hdu.edu.cn/showproblem.php?pid=4614
+HDU 4553 约会安排  http://acm.hdu.edu.cn/showproblem.php?pid=4553
+POJ 1177 Picture  http://poj.org/problem?id=1177
+HDU 1255 覆盖的面积  http://acm.hdu.edu.cn/showproblem.php?pid=1255
+HDU 1542 Atlantis  http://acm.hdu.edu.cn/showproblem.php?pid=1542
+HDU 3642 Get The Treasury  http://acm.hdu.edu.cn/showproblem.php?pid=3642
+
+专题八 生成树
+POJ 1679 The Unique MST  http://poj.org/problem?id=1679
+HDU 4081 Qin Shi Huang's National Road System  http://acm.hdu.edu.cn/showproblem.php?pid=4081
+UVA 10600 ACM Contest and Blackout
+UVA 10462 Is There A Second Way Left?
+POJ 3164 Command Network  http://poj.org/problem?id=3164
+UVA 11183 Teen Girl Squad
+HDU 2121 Ice_cream’s world II  http://acm.hdu.edu.cn/showproblem.php?pid=2121
+HDU 4009 Transfer water  http://acm.hdu.edu.cn/showproblem.php?pid=4009
+UVA 10766 Organising the Organisation
+SPOJ DETER3 Find The Determinant III
+URAL 1627 Join
+HDU 4305 Lightning  http://acm.hdu.edu.cn/showproblem.php?pid=4305
+HDU 4408 Minimum Spanning Tree  http://acm.hdu.edu.cn/showproblem.php?pid=4408
+SPOJ HIGH Highways
+
+专题九 连通图
+POJ 1236 Network of Schools  http://poj.org/problem?id=1236
+UVA 315 Network
+UVA 796 Critical Links
+POJ 3694 Network  http://poj.org/problem?id=3694
+POJ 3177 Redundant Paths  http://poj.org/problem?id=3177
+HDU 4612 Warm up  http://acm.hdu.edu.cn/showproblem.php?pid=4612
+HDU 4635 Strongly connected  http://acm.hdu.edu.cn/showproblem.php?pid=4635
+HDU 4685 Prince and Princess  http://acm.hdu.edu.cn/showproblem.php?pid=4685
+HDU 4738 Caocao's Bridges  http://acm.hdu.edu.cn/showproblem.php?pid=4738
+
+专题十 匹配问题
+HDU 1045 Fire Net  http://acm.hdu.edu.cn/showproblem.php?pid=1045
+HDU 2444 The Accomodation of Students  http://acm.hdu.edu.cn/showproblem.php?pid=2444
+HDU 1083 Courses  http://acm.hdu.edu.cn/showproblem.php?pid=1083
+HDU 1281 棋盘游戏  http://acm.hdu.edu.cn/showproblem.php?pid=1281
+HDU 2819 Swap  http://acm.hdu.edu.cn/showproblem.php?pid=2819
+HDU 2389 Rain on your Parade  http://acm.hdu.edu.cn/showproblem.php?pid=2389
+HDU 4185 Oil Skimming  http://acm.hdu.edu.cn/showproblem.php?pid=4185
+POJ 3020 Antenna Placement  http://poj.org/problem?id=3020
+HDU 1054 Strategic Game  http://acm.hdu.edu.cn/showproblem.php?pid=1054
+HDU 1151 Air Raid  http://acm.hdu.edu.cn/showproblem.php?pid=1151
+POJ 2594 Treasure Exploration  http://poj.org/problem?id=2594
+HDU 3829 Cat VS Dog  http://acm.hdu.edu.cn/showproblem.php?pid=3829
+POJ 2289 Jamie's Contact Groups  http://poj.org/problem?id=2289
+POJ 2112 Optimal Milking  http://poj.org/problem?id=2112
+POJ 3189 Steady Cow Assignment  http://poj.org/problem?id=3189
+HDU 2255 奔小康赚大钱  http://acm.hdu.edu.cn/showproblem.php?pid=2255
+HDU 3488 Tour  http://acm.hdu.edu.cn/showproblem.php?pid=3488
+URAL 1099 Work Scheduling
+HDU 4687 Boke and Tsukkomi  http://acm.hdu.edu.cn/showproblem.php?pid=4687
+
+专题十一 网络流
+POJ 3436 ACM Computer Factory  http://poj.org/problem?id=3436
+POJ 3281 Dining  http://poj.org/problem?id=3281
+POJ 1087 A Plug for UNIX  http://poj.org/problem?id=1087
+POJ 2195 Going Home  http://poj.org/problem?id=2195
+POJ 2516 Minimum Cost  http://poj.org/problem?id=2516
+POJ 1459 Power Network  http://poj.org/problem?id=1459
+HDU 4280 Island Transport  http://acm.hdu.edu.cn/showproblem.php?pid=4280
+HDU 4292 Food  http://acm.hdu.edu.cn/showproblem.php?pid=4292
+HDU 4289 Control  http://acm.hdu.edu.cn/showproblem.php?pid=4289
+UVA 10480 Sabotage
+HDU 2732 Leapin' Lizards  http://acm.hdu.edu.cn/showproblem.php?pid=2732
+HDU 3338 Kakuro Extension  http://acm.hdu.edu.cn/showproblem.php?pid=3338
+HDU 3605 Escape  http://acm.hdu.edu.cn/showproblem.php?pid=3605
+HDU 3081 Marriage Match II  http://acm.hdu.edu.cn/showproblem.php?pid=3081
+HDU 3416 Marriage Match IV  http://acm.hdu.edu.cn/showproblem.php?pid=3416
+
+专题十二 基础DP1
+HDU 1024 Max Sum Plus Plus  http://acm.hdu.edu.cn/showproblem.php?pid=1024
+HDU 1029 Ignatius and the Princess IV  http://acm.hdu.edu.cn/showproblem.php?pid=1029
+HDU 1069 Monkey and Banana  http://acm.hdu.edu.cn/showproblem.php?pid=1069
+HDU 1074 Doing Homework  http://acm.hdu.edu.cn/showproblem.php?pid=1074
+HDU 1087 Super Jumping! Jumping! Jumping!  http://acm.hdu.edu.cn/showproblem.php?pid=1087
+HDU 1114 Piggy-Bank  http://acm.hdu.edu.cn/showproblem.php?pid=1114
+HDU 1176 免费馅饼  http://acm.hdu.edu.cn/showproblem.php?pid=1176
+HDU 1260 Tickets  http://acm.hdu.edu.cn/showproblem.php?pid=1260
+HDU 1257 最少拦截系统  http://acm.hdu.edu.cn/showproblem.php?pid=1257
+HDU 1160 FatMouse's Speed  http://acm.hdu.edu.cn/showproblem.php?pid=1160
+POJ 1015 Jury Compromise  http://poj.org/problem?id=1015
+POJ 1458 Common Subsequence  http://poj.org/problem?id=1458
+POJ 1661 Help Jimmy  http://poj.org/problem?id=1661
+POJ 2533 Longest Ordered Subsequence  http://poj.org/problem?id=2533
+POJ 3186 Treats for the Cows  http://poj.org/problem?id=3186
+HDU 1078 FatMouse and Cheese  http://acm.hdu.edu.cn/showproblem.php?pid=1078
+HDU 2859 Phalanx  http://acm.hdu.edu.cn/showproblem.php?pid=2859
+POJ 3616 Milking Time  http://poj.org/problem?id=3616
+POJ 3666 Making the Grade  http://poj.org/problem?id=3666
+
+专题十三 基础计算几何
+POJ 2318 TOYS  http://poj.org/problem?id=2318
+POJ 2398 Toy Storage  http://poj.org/problem?id=2398
+POJ 3304 Segments  http://poj.org/problem?id=3304
+POJ 1269 Intersecting Lines  http://poj.org/problem?id=1269
+POJ 1556 The Doors  http://poj.org/problem?id=1556
+POJ 2653 Pick-up sticks  http://poj.org/problem?id=2653
+POJ 1066 Treasure Hunt  http://poj.org/problem?id=1066
+POJ 1410 Intersection  http://poj.org/problem?id=1410
+POJ 1696 Space Ant  http://poj.org/problem?id=1696
+POJ 3347 Kadj Squares  http://poj.org/problem?id=3347
+POJ 2826 An Easy Problem?!  http://poj.org/problem?id=2826
+POJ 1039 Pipe  http://poj.org/problem?id=1039
+POJ 3449 Geometric Shapes  http://poj.org/problem?id=3449
+POJ 1584 A Round Peg in a Ground Hole  http://poj.org/problem?id=1584
+
+专题十四 数论基础
+LightOJ 1370 Bi-shoe and Phi-shoe
+LightOJ 1356 Prime Independence
+LightOJ 1341 Aladdin and the Flying Carpet
+LightOJ 1336 Sigma Function
+LightOJ 1282 Leading and Trailing
+LightOJ 1259 Goldbach`s Conjecture
+LightOJ 1245 Harmonic Number (II)
+LightOJ 1236 Pairs Forming LCM
+LightOJ 1234 Harmonic Number
+LightOJ 1220 Mysterious Bacteria
+LightOJ 1214 Large Division
+LightOJ 1213 Fantasy of a Summation
+LightOJ 1197 Help Hanzo
+LightOJ 1138 Trailing Zeroes (III)
+UVA 11426 GCD - Extreme (II)
+UVA 11754 Code Feat
+UVA 11916 Emoogle Grid
+POJ 1061 青蛙的约会  http://poj.org/problem?id=1061
+POJ 2115 C Looooops  http://poj.org/problem?id=2115
+POJ 2116 Death to Binary?  http://poj.org/problem?id=2116
+HDU 2161 Primes  http://acm.hdu.edu.cn/showproblem.php?pid=2161
+UVA 11827 Maximum GCD
+UVA 10200 Prime Time
+SGU 106 The equation
+POJ 2478 Farey Sequence  http://poj.org/problem?id=2478
+UVA 11752 The Super Powers
+
+专题十五 数位DP
+CodeForces 55D Beautiful numbers
+HDU 4352 XHXJ's LIS  http://acm.hdu.edu.cn/showproblem.php?pid=4352
+HDU 2089 不要62  http://acm.hdu.edu.cn/showproblem.php?pid=2089
+HDU 3555 Bomb  http://acm.hdu.edu.cn/showproblem.php?pid=3555
+POJ 3252 Round Numbers  http://poj.org/problem?id=3252
+HDU 3709 Balanced Number  http://acm.hdu.edu.cn/showproblem.php?pid=3709
+HDU 3652 B-number  http://acm.hdu.edu.cn/showproblem.php?pid=3652
+HDU 4734 F(x)  http://acm.hdu.edu.cn/showproblem.php?pid=4734
+ZOJ 3494 BCD Code
+HDU 4507 吉哥系列故事――恨7不成妻  http://acm.hdu.edu.cn/showproblem.php?pid=4507
+SPOJ BALNUM Balanced Numbers
+
+专题十六 KMP & 扩展KMP & Manacher
+HDU 1711 Number Sequence  http://acm.hdu.edu.cn/showproblem.php?pid=1711
+HDU 1686 Oulipo  http://acm.hdu.edu.cn/showproblem.php?pid=1686
+HDU 2087 剪花布条  http://acm.hdu.edu.cn/showproblem.php?pid=2087
+HDU 3746 Cyclic Nacklace  http://acm.hdu.edu.cn/showproblem.php?pid=3746
+HDU 1358 Period  http://acm.hdu.edu.cn/showproblem.php?pid=1358
+HUST 1010 The Minimum Length
+POJ 2406 Power Strings  http://poj.org/problem?id=2406
+POJ 2752 Seek the Name, Seek the Fame  http://poj.org/problem?id=2752
+POJ 3080 Blue Jeans  http://poj.org/problem?id=3080
+HDU 2594 Simpsons’ Hidden Talents  http://acm.hdu.edu.cn/showproblem.php?pid=2594
+HDU 3336 Count the string  http://acm.hdu.edu.cn/showproblem.php?pid=3336
+HDU 4300 Clairewd’s message  http://acm.hdu.edu.cn/showproblem.php?pid=4300
+HDU 1238 Substrings  http://acm.hdu.edu.cn/showproblem.php?pid=1238
+HDU 2328 Corporate Identity  http://acm.hdu.edu.cn/showproblem.php?pid=2328
+HDU 3374 String Problem  http://acm.hdu.edu.cn/showproblem.php?pid=3374
+HDU 2609 How many  http://acm.hdu.edu.cn/showproblem.php?pid=2609
+FZU 1901 Period II
+POJ 3746 Teacher YYF  http://poj.org/problem?id=3746
+HDU 3613 Best Reward  http://acm.hdu.edu.cn/showproblem.php?pid=3613
+POJ 3376 Finding Palindromes  http://poj.org/problem?id=3376
+POJ 3974 Palindrome  http://poj.org/problem?id=3974
+HDU 4513 吉哥系列故事――完美队形II  http://acm.hdu.edu.cn/showproblem.php?pid=4513
+HDU 3294 Girls' research  http://acm.hdu.edu.cn/showproblem.php?pid=3294
+HDU 3068 最长回文  http://acm.hdu.edu.cn/showproblem.php?pid=3068
+HDU 4847 Wow! Such Doge!  http://acm.hdu.edu.cn/showproblem.php?pid=4847
+HDU 4763 Theme Section  http://acm.hdu.edu.cn/showproblem.php?pid=4763
+
+专题十七 AC自动机
+HDU 2222 Keywords Search  http://acm.hdu.edu.cn/showproblem.php?pid=2222
+HDU 2896 病毒侵袭  http://acm.hdu.edu.cn/showproblem.php?pid=2896
+HDU 3065 病毒侵袭持续中  http://acm.hdu.edu.cn/showproblem.php?pid=3065
+ZOJ 3430 Detect the Virus
+POJ 2778 DNA Sequence  http://poj.org/problem?id=2778
+HDU 2243 考研路茫茫――单词情结  http://acm.hdu.edu.cn/showproblem.php?pid=2243
+POJ 1625 Censored!  http://poj.org/problem?id=1625
+HDU 2825 Wireless Password  http://acm.hdu.edu.cn/showproblem.php?pid=2825
+HDU 2296 Ring  http://acm.hdu.edu.cn/showproblem.php?pid=2296
+HDU 2457 DNA repair  http://acm.hdu.edu.cn/showproblem.php?pid=2457
+ZOJ 3228 Searching the String
+HDU 3341 Lost's revenge  http://acm.hdu.edu.cn/showproblem.php?pid=3341
+HDU 3247 Resource Archiver  http://acm.hdu.edu.cn/showproblem.php?pid=3247
+ZOJ 3494 BCD Code
+HDU 4758 Walk Through Squares  http://acm.hdu.edu.cn/showproblem.php?pid=4758
+HDU 4511 小明系列故事――女友的考验  http://acm.hdu.edu.cn/showproblem.php?pid=4511
+
+专题十八 后缀数组
+POJ 1743 Musical Theme  http://poj.org/problem?id=1743
+POJ 3261 Milk Patterns  http://poj.org/problem?id=3261
+SPOJ DISUBSTR Distinct Substrings
+SPOJ SUBST1 New Distinct Substrings
+POJ 2406 Power Strings  http://poj.org/problem?id=2406
+SPOJ REPEATS Repeats
+POJ 3693 Maximum repetition substring  http://poj.org/problem?id=3693
+POJ 2774 Long Long Message  http://poj.org/problem?id=2774
+POJ 3415 Common Substrings  http://poj.org/problem?id=3415
+POJ 3294 Life Forms  http://poj.org/problem?id=3294
+SPOJ PHRASES Relevant Phrases of Annihilation
+POJ 1226 Substrings  http://poj.org/problem?id=1226
+UVA 11475 Extend to Palindrome
+POJ 3581 Sequence  http://poj.org/problem?id=3581
+POJ 3450 Corporate Identity  http://poj.org/problem?id=3450
+POJ 3080 Blue Jeans  http://poj.org/problem?id=3080
+POJ 2758 Checking the Text  http://poj.org/problem?id=2758
+
+专题十九 矩阵
+CodeForces 450B Jzzhu and Sequences
+HDU 5015 233 Matrix  http://acm.hdu.edu.cn/showproblem.php?pid=5015
+HDU 4990 Reading comprehension  http://acm.hdu.edu.cn/showproblem.php?pid=4990
+UVA 11651 Krypton Number System
+HDU 4965 Fast Matrix Calculation  http://acm.hdu.edu.cn/showproblem.php?pid=4965
+UVA 11551 Experienced Endeavour
+UVA 10689 Yet another Number Sequence
+UVA 11149 Power of Matrix
+UVA 10655 Contemplation! Algebra
+UVA 1386 Cellular Automaton
+UVA 10870 Recurrences
+UVA 11885 Number of Battlefields
+HDU 4565 So Easy!  http://acm.hdu.edu.cn/showproblem.php?pid=4565
+CodeForces 392C Yet Another Number Sequence
+CodeForces 385E Bear in the Field
+FZU 1911 Construct a Matrix
+UVA 10518 How Many Calls?
+HDU 4549 M斐波那契数列  http://acm.hdu.edu.cn/showproblem.php?pid=4549
+HDU 4686 Arc of Dream  http://acm.hdu.edu.cn/showproblem.php?pid=4686
+
+专题二十 斜率DP
+HDU 3507 Print Article  http://acm.hdu.edu.cn/showproblem.php?pid=3507
+HDU 2829 Lawrence  http://acm.hdu.edu.cn/showproblem.php?pid=2829
+HDU 4528 小明系列故事――捉迷藏  http://acm.hdu.edu.cn/showproblem.php?pid=4528
+HDU 1300 Pearls  http://acm.hdu.edu.cn/showproblem.php?pid=1300
+HDU 2993 MAX Average Problem  http://acm.hdu.edu.cn/showproblem.php?pid=2993
+UVALive 5097 Cross the Wall
+HDU 3045 Picnic Cows  http://acm.hdu.edu.cn/showproblem.php?pid=3045
+HDU 3516 Tree Construction  http://acm.hdu.edu.cn/showproblem.php?pid=3516
+POJ 1160 Post Office  http://poj.org/problem?id=1160
+POJ 1180 Batch Scheduling  http://poj.org/problem?id=1180
+POJ 2018 Best Cow Fences  http://poj.org/problem?id=2018
+POJ 3709 K-Anonymous Sequence  http://poj.org/problem?id=3709
+POJ 2841 Navigation Game  http://poj.org/problem?id=2841
+POJ 1260 Pearls  http://poj.org/problem?id=1260
+UVA 12594 Naming Babies
+HDU 3480 Division  http://acm.hdu.edu.cn/showproblem.php?pid=3480
+UVALive 6771 Buffed Buffet
+
+专题二十一 概率&期望
+LightOJ 1027 A Dangerous Maze
+LightOJ 1030 Discovering Gold
+LightOJ 1038 Race to 1 Again
+LightOJ 1079 Just another Robbery
+LightOJ 1104 Birthday Paradox
+LightOJ 1151 Snakes and Ladders
+LightOJ 1248 Dice (III)
+LightOJ 1265 Island of Survival
+LightOJ 1274 Beating the Dataset
+LightOJ 1284 Lights inside 3D Grid
+LightOJ 1287 Where to Run
+LightOJ 1317 Throwing Balls into the Baskets
+LightOJ 1321 Sending Packets
+LightOJ 1342 Aladdin and the Magical Sticks
+LightOJ 1364 Expected Cards
+LightOJ 1395 A Dangerous Maze (II)
+LightOJ 1408 Batting Practice
+
+专题二十二 区间DP
+ZOJ 3537 Cake
+LightOJ 1422 Halloween Costumes
+POJ 2955 Brackets  http://poj.org/problem?id=2955
+CodeForces 149D Coloring Brackets
+POJ 1651 Multiplication Puzzle  http://poj.org/problem?id=1651
+ZOJ 3469 Food Delivery
+HDU 4283 You Are the One  http://acm.hdu.edu.cn/showproblem.php?pid=4283
+HDU 2476 String painter  http://acm.hdu.edu.cn/showproblem.php?pid=2476
+
+专题二十三 计算几何之半平面交
+POJ 3335 Rotating Scoreboard  http://poj.org/problem?id=3335
+POJ 3130 How I Mathematician Wonder What You Are!  http://poj.org/problem?id=3130
+POJ 1474 Video Surveillance  http://poj.org/problem?id=1474
+POJ 1279 Art Gallery  http://poj.org/problem?id=1279
+POJ 3525 Most Distant Point from the Sea  http://poj.org/problem?id=3525
+POJ 3384 Feng Shui  http://poj.org/problem?id=3384
+POJ 1755 Triathlon  http://poj.org/problem?id=1755
+POJ 2540 Hotter Colder  http://poj.org/problem?id=2540
+POJ 2451 Uyuw's Concert  http://poj.org/problem?id=2451
+POJ 1271 Nice Milk  http://poj.org/problem?id=1271
+UVA 11722 Joining with Friend
+UVA 11722 he Sea
+UVALive 7295 Positive Con Sequences
+UVALive 7292 Refract Facts
+UVALive 7297 Hounded by Indecision
+UVALive 7346 Avoiding an Arrrgument
+UVALive 7521 Kinfolk
+UVALive 7347 Of the Children
+UVALive 7348 Talking About Numbers
+UVALive 7349 The Scheming Gardener
+LightOJ 1433 Minimum Arc Distance
+LightOJ 1387 Setu
+LightOJ 1338 Hidden Secret!
+LightOJ 1261 K-SAT Problem
+LightOJ 1249 Chocolate Thie
