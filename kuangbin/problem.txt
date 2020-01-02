@@ -10,7 +10,7 @@ F POJ 3126 Prime Path  http://poj.org/problem?id=3126
 G POJ 3087 Shuffle'm Up  http://poj.org/problem?id=3087
 H POJ 3414 Pots  http://poj.org/problem?id=3414
 I FZU 2150 Fire Game
-J UVA 11624 Fire!
+J UVA 11624 Fire! https://vjudge.net/problem/UVA-11624
 K POJ 3984 迷宫问题  http://poj.org/problem?id=3984
 L HDU 1241 Oil Deposits  http://acm.hdu.edu.cn/showproblem.php?pid=1241
 M HDU 1495 非常可乐  http://acm.hdu.edu.cn/showproblem.php?pid=1495
