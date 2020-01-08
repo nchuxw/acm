@@ -1,3 +1,4 @@
+/* http://acm.hdu.edu.cn/showproblem.php?pid=3533 */
 #include <stdio.h>
 #include <string.h>
 
