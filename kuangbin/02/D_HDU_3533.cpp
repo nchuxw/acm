@@ -1,8 +1,5 @@
 /* http://acm.hdu.edu.cn/showproblem.php?pid=3533 */
-<<<<<<< HEAD
-=======
 /* AC */
->>>>>>> b89df33c7fd22c4d6c2576b341de640a06516db7
 #include <stdio.h>
 #include <string.h>
 
