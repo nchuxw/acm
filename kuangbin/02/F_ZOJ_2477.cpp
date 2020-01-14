@@ -60,6 +60,7 @@ void input_cube(char cube[][3][3])
 	}
 }
 
+// char face_mp[7] = {"rgbowy"};
 int span_cent[8][2] = {{0, 2}, {1, 5}, {2, 8}, {5, 7}, {8, 6}, {7, 3}, {6, 0}, {3, 1}};
 int span_ed[6][12][2] = 
 {
@@ -135,68 +136,59 @@ void cube_span(char cube[6][3][3] ,int no, int dist)
 }
 
 char dest[6][3][3];
-int ans, fs[2];
 
-int dfs(char cube[6][3][3], int deep)
+int dfs(char cube[6][3][3], int deep, int lit, int fs[][2])
 {
-	int i, j, k, res, flag;
+	int i, j, k, res;
 	char next[6][3][3];
 
-	if(deep > 5 || deep >= ans)
+	if(deep >= lit)
 	{
-		return 0;
-	}
-	for(i = 0; i < 6; i++)
-	{
-		for(j = 0; j < 3; j++)
+		for(i = 0; i < 6; i++)
 		{
-			for(k = 0; k < 3; k++)
+			for(j = 0; j < 3; j++)
 			{
-				if(i == 0 && cube[i][j][k] != 'r') goto continue_search;
-				if(i == 1 && cube[i][j][k] != 'g') goto continue_search;
-				if(i == 2 && cube[i][j][k] != 'b') goto continue_search;
-				if(i == 3 && cube[i][j][k] != 'o') goto continue_search;
-				if(i == 4 && cube[i][j][k] != 'w') goto continue_search;
-				if(i == 5 && cube[i][j][k] != 'y') goto continue_search;
+				for(k = 0; k < 3; k++)
+				{
+					if(cube[i][j][k] != cube[i][1][1])
+					{
+						return 0;
+					}
+				}
 			}
 		}
+		return 1;
 	}
-	if(ans > deep)
-	{
-		ans = deep;
-	}
-	return 1;
-	continue_search:
 
-	flag = 0;
 	for(i = 0; i < 6; i ++)
 	{
 		memcpy(next, cube, sizeof(next));
 		cube_span(next, i, 1);
-		res = dfs(next, deep + 1);
+		res = dfs(next, deep + 1, lit, fs);
 		if(res != 0)
 		{
-			fs[0] = i;
-			fs[1] = 1;
-			flag = 1;
+			fs[deep][0] = i;
+			fs[deep][1] = 1;
+			return 1;
 		}
 
 		memcpy(next, cube, sizeof(next));
 		cube_span(next, i, -1);
-		res = dfs(next, deep + 1);
+		res = dfs(next, deep + 1, lit, fs);
 		if(res != 0)
 		{
-			fs[0] = i;
-			fs[1] = 1;
-			flag = 1;
+			fs[deep][0] = i;
+			fs[deep][1] = -1;
+			return 1;
 		}
 	}
-	return flag;
+	return 0;
 }
 
 int main()
 {
 	int t, i, res;
+	int ans, fs[10][2];
 	char cube[6][3][3];
 
 	scanf("%d", &t);
@@ -217,8 +209,14 @@ int main()
 		// }
 		// printf("\n");
 
-		ans = 10;
-		dfs(cube, 0);
+		for(ans = 0; ans <= 5; ans++)
+		{
+			res = dfs(cube, 0, ans, fs);
+			if(res == 1)
+			{
+				break;
+			}
+		}
 		if(ans > 5)
 		{
 			printf("-1\n");
@@ -227,7 +225,11 @@ int main()
 		printf("%d\n", ans);
 		if(ans != 0)
 		{
-			printf("%d %d\n", fs[0], fs[1]);
+			// for(i = 0; i < ans; i++)
+			// {
+			// 	printf("%d %d\n", fs[i][0], fs[i][1]);
+			// }
+			printf("%d %d\n", fs[0][0], fs[0][1]);
 		}
 	}
 	return 0;
@@ -235,7 +237,7 @@ int main()
 
 /*
 
-3
+5
       w w w
       w w w
       w w w
@@ -265,6 +267,16 @@ r r w g g g y b b o o o
       r r r
       y y y
       y y w
+
+      w w w
+      w w w
+      w w w
+g g g b b b o o o r r r
+g g g b b b o o o r r r
+g g g b b b o o o r r r
+      y y y
+      y y y
+      y y y
 
 
 */
