@@ -1,4 +1,5 @@
 /* https://zoj.pintia.cn/problem-sets/91827364500/problems/91827365976 */
+/* AC */
 #include <stdio.h>
 #include <string.h>
 
@@ -65,10 +66,10 @@ int span_cent[8][2] = {{0, 2}, {1, 5}, {2, 8}, {5, 7}, {8, 6}, {7, 3}, {6, 0}, {
 int span_ed[6][12][2] = 
 {
 	{
-		{36,  9}, {29, 12}, {42, 15},
+		{36,  9}, {39, 12}, {42, 15},
 		{ 9, 45}, {12, 48}, {15, 51},
 		{45, 35}, {48, 32}, {51, 29},
-		{35, 36}, {32, 29}, {29, 42}
+		{35, 36}, {32, 39}, {29, 42}
 	},
 	{
 		{42, 18}, {43, 21}, {44, 24},
@@ -185,16 +186,18 @@ int dfs(char cube[6][3][3], int deep, int lit, int fs[][2])
 	return 0;
 }
 
-void print_cube_line(char cube[6][3][3])
+void print_cube(char cube[6][3][3])
 {
 	int i, j, k;
 
 	for(i = 0; i < 3; i++)
 	{
+		printf("   ");
 		for(j = 0; j < 3; j++)
 		{
 			printf("%c", cube[4][i][j]);
 		}
+		printf("\n");
 	}
 	for(i = 0; i < 3; i++)
 	{
@@ -205,14 +208,18 @@ void print_cube_line(char cube[6][3][3])
 				printf("%c", cube[j][i][k]);
 			}
 		}
+		printf("\n");
 	}
 	for(i = 0; i < 3; i++)
 	{
+		printf("   ");
 		for(j = 0; j < 3; j++)
 		{
 			printf("%c", cube[5][i][j]);
 		}
+		printf("\n");
 	}
+	printf("\n");
 }
 
 int main()
@@ -226,18 +233,6 @@ int main()
 	{
 		getchar();
 		input_cube(cube);
-		// for(i = 0; i < 6; i++)
-		// {
-		// 	for(j = 0; j < 3; j++)
-		// 	{
-		// 		for(k = 0; k < 3; k++)
-		// 		{
-		// 			printf("%c", cube[i][j][k]);
-		// 		}
-		// 		printf("\n");
-		// 	}
-		// }
-		// printf("\n");
 
 		for(ans = 0; ans <= 5; ans++)
 		{
@@ -255,58 +250,11 @@ int main()
 		printf("%d\n", ans);
 		if(ans != 0)
 		{
-			// for(i = 0; i < ans; i++)
-			// {
-			// 	printf("%d %d\n", fs[i][0], fs[i][1]);
-			// }
-			printf("%d %d\n", fs[0][0], fs[0][1]);
+			for(i = 0; i < ans; i++)
+			{
+				printf("%d %d\n", fs[i][0], fs[i][1]);
+			}
 		}
 	}
 	return 0;
 }
-
-/*
-
-5
-      w w w
-      w w w
-      w w w
-r r r g g g b b b o o o
-r r r g g g b b b o o o
-r r r g g g b b b o o o
-      y y y
-      y y y
-      y y y
-
-      w w w
-      w w w
-      b b b
-r r w g g g y b b o o o
-r r w g g g y b b o o o
-r r w g g g y b b o o o
-      r r r
-      y y y
-      y y y
-
-      w w w
-      w w w
-      b b b
-r r w g g g y b b o o o
-r r w g g g y b b o o o
-r r w g g g y b b o o o
-      r r r
-      y y y
-      y y w
-
-      w w w
-      w w w
-      w w w
-g g g b b b o o o r r r
-g g g b b b o o o r r r
-g g g b b b o o o r r r
-      y y y
-      y y y
-      y y y
-
-
-*/
