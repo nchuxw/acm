@@ -1,4 +1,5 @@
 /* http://acm.hdu.edu.cn/showproblem.php?pid=3085 */
+/* AC */
 #include <stdio.h>
 #include <string.h>
 #include <queue>
