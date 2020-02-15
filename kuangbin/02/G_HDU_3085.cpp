@@ -5,8 +5,8 @@
 
 using namespace std;
 
-// const int MAX_N = 800 + 10;
-const int MAX_N = 2 + 10;
+const int MAX_N = 800 + 10;
+// const int MAX_N = 2 + 10;
 
 typedef struct point
 {
@@ -53,7 +53,7 @@ int step_one(int mg, point zs[], int t)
 			tep = front;
 			tep.x += dir[i][0];
 			tep.y += dir[i][1];
-			if(tep.x < 0 || tep.x >= n || tep.y < 0 || tep.y >= n)
+			if(tep.x < 0 || tep.x >= n || tep.y < 0 || tep.y >= m)
 			{
 				continue;
 			}
