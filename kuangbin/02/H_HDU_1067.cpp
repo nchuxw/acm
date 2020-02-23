@@ -1,6 +1,8 @@
 /* http://acm.hdu.edu.cn/showproblem.php?pid=1067 */
+/* AC */
 #include <stdio.h>
 #include <string.h>
+#include <string>
 #include <queue>
 #include <map>
 
@@ -9,129 +11,104 @@ using namespace std;
 typedef struct node
 {
 	char index[4];
-	char a[4][7];
+	char a[30];
 	int t;
 } node;
-
-typedef struct mapnd
-{
-	char a[4][7];
-} mapnd;
-
-int operator < (const mapnd a, const mapnd b)
-{
-	int i, j;
-	for(i = 0; i < 4; i++)
-	{
-		for(j = 0; j < 7; j++)
-		{
-			if(a.a[i][j] != b.a[i][j])
-			{
-				return a.a[i][j] < b.a[i][j];
-			}
-		}
-	}
-}
 
 void print_node(node nd)
 {
 	int i, j;
-	for(i = 0; i < 4; i++)
+	for(i = 0; i < 28; i++)
 	{
-		printf("%d %d\n", nd.index[i] / 10, nd.index[i] % 10);
-	}
-	for(i = 0; i < 4; i++)
-	{
-		for(j = 0; j < 7; j++)
+		if(i % 7 == 0)
 		{
-			printf("%d ", nd.a[i][j]);
+			printf("%d ", i / 7 * 10 + 11);
 		}
-		printf("\n");
-	}
-	printf("\n");
-}
-
-int is_end(char a[4][7])
-{
-	int i, j;
-	for(i = 0; i < 4; i++)
-	{
-		for(j = 0; j < 6; j++)
+		if(nd.a[i] == 1)
 		{
-			if(a[i][j] / 10 != i + 1 || a[i][j] % 10 != j + 2)
-			{
-				return 0;
-			}
+			printf("## ");
+		}
+		else
+		{
+			printf("%d ", nd.a[i]);
+		}
+		if(i % 7 == 6)
+		{
+			printf("\n");
 		}
 	}
-	return 1;
 }
 
 int solve(node start)
 {
-	int i, j, k, tx, ty, cx, cy, cnum;
-	queue<node> que;
-	map<mapnd, char> mp;
+	int i, j, k, si, di, dnum;
 	node tep;
-	mapnd mpnd;
+	queue<node> que;
+	map<string, bool> mp;
+	char end[30] = 
+	{
+		12, 13, 14, 15, 16, 17, 1,
+		22, 23, 24, 25, 26, 27, 1,
+		32, 33, 34, 35, 36, 37, 1,
+		42, 43, 44, 45, 46, 47, 1, 0
+	};
 
+	if(strcmp(start.a, end) == 0)
+	{
+		return 0;
+	}
 	que.push(start);
-	mp.clear();
-	memcpy(mpnd.a, start.a, sizeof(mpnd.a));
-	mp[mpnd] = 1;
+	mp[start.a] = true;
 	while(que.empty() == false)
 	{
-		tep = que.front();
-		que.pop();
-		tep.t++;
 		for(k = 0; k < 4; k++)
 		{
-			tx = tep.index[k] / 10;
-			ty = tep.index[k] % 10;
-			if(ty == 0)
+			tep = que.front();
+			si = tep.index[k];
+			dnum = (si % 7 == 0) ? si / 7 * 10 + 12 : tep.a[si - 1] + 1;
+			if(dnum == 2 || dnum % 10 == 8)
 			{
-				cnum = tx * 10 + 12;
-			}
-			else
-			{
-				cnum = tep.a[tx][ty - 1] + 1;
-			}
-			if(cnum % 10 == 8 || cnum == 1)
-			{
+				// print_node(tep);
+				// printf("%d不可以换\n\n", si);
 				continue;
 			}
-			for(i = 0, j = 7; i < 4 && j == 7; i++)
+			for(i = 0; i < 28; i++)
 			{
-				for(j = 0; j < 7; j++)
+				if(tep.a[i] == dnum)
 				{
-					if(tep.a[i][j] == cnum)
-					{
-						cx = i;
-						cy = j;
-						break;
-					}
+					di = i;
+					break;
 				}
 			}
-			tep.a[tx][ty] = cnum;
-			tep.a[cx][cy] = 0;
-			memcpy(mpnd.a, tep.a, sizeof(mpnd.a));
-			if(mp.count(mpnd) == 1)
+			tep.a[di] = 1;
+			tep.a[si] = dnum;
+			tep.index[k] = di;
+			tep.t++;
+			if(strcmp(tep.a, end) == 0)
 			{
-				continue;
-			}
-			mp[mpnd] = 1;
-			tep.index[k] = cx * 10 + cy;
-			// print_node(tep);
-			if(is_end(tep.a))
-			{
+				// print_node(tep);
+				// printf("找到了\n\n");
 				return tep.t;
 			}
-			que.push(tep);
-			tep.index[k] = tx * 10 + ty;
-			tep.a[tx][ty] = 0;
-			tep.a[cx][cy] = cnum;
+			if(mp.count(tep.a) == 1)
+			{
+				// print_node(tep);
+				// printf("出现过\n\n");
+				continue;
+			}
+			// print_node(que.front());
+			// printf("index: ");
+			// for(i = 0; i < 4; i++)
+			// {
+			// 	printf("%d ", que.front().index[i]);
+			// }
+			// printf("\n%d --> %d, %d\n", dnum, si, k);
 			// print_node(tep);
+			// printf("\n");
+			mp[tep.a] = true;
+			que.push(tep);
 		}
+		que.pop();
 	}
 	return -1;
 }
@@ -150,20 +127,16 @@ int main()
 			for(j = 0; j < 7; j++)
 			{
 				scanf("%d", &in);
-				start.a[i][j] = (char)in;
-				if(start.a[i][j] % 10 == 1)
+				start.a[i * 7 + j] = (char)in;
+				if(start.a[i * 7 + j] % 10 == 1)
 				{
-					start.a[i][j] = 0;
-					start.index[k] = i * 10 + j;
+					start.a[i * 7 + j] = 1;
+					start.index[k] = i * 7 + j;
 					k++;
 				}
 			}
 		}
-		if(is_end(start.a))
-		{
-			printf("0\n");
-			continue;
-		}
+		start.a[28] = '\0';
 		start.t = 0;
 		ans = solve(start);
 		printf("%d\n", ans);
@@ -199,5 +172,7 @@ int main()
 13 17 36 24 44 21 15
 43 16 45 47 23 11 26
 25 37 41 34 42 12 31
+
+
 
 */
