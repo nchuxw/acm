@@ -3,8 +3,10 @@
 #include <stdio.h>
 #include <string.h>
 
-const int MAX_N = 1000 + 10;
-const int MAX_NODE = MAX_N * 100;
+// const int MAX_N = 1000 + 10;
+// const int MAX_NODE = MAX_N * 100;
+const int MAX_N = 10;
+const int MAX_NODE = 30;
 
 typedef struct node
 {
@@ -15,6 +17,43 @@ typedef struct node
 int n, m, node_size;
 node nd[MAX_NODE];
 int row_head[MAX_N];
+
+int book[MAX_N];
+
+void print()
+{
+	int i, j;
+	int map[MAX_N][MAX_N];
+
+	memset(map, 0, sizeof(map));
+	printf("\n  ");
+	for(i = nd[0].r; i != 0; i = nd[i].r)
+	{
+		printf("%d ", i);
+		map[0][i] = 1;
+		for(j = nd[i].d; j != i; j = nd[j].d)
+		{
+			map[nd[j].row][nd[j].col] = 1;
+		}
+	}
+	printf("\n");
+	for(i = 1; i <= n; i++)
+	{
+		if(book[i] == 1)
+		{
+			continue;
+		}
+		printf("%d ", i);
+		for(j = 1; j <= m; j++)
+		{
+			if(map[0][j] == 1)
+			{
+				printf("%d ", map[i][j]);
+			}
+		}
+		printf("\n");
+	}
+}
 
 void init()
 {
@@ -34,6 +73,8 @@ void init()
 
 	/* 初始化每一行的行指针 */
 	memset(row_head, -1, sizeof(row_head));
+
+	memset(book, 0, sizeof(book));
 }
 
 void add_node(int row, int col)
@@ -82,6 +123,7 @@ void remove(int col)
 			nd[nd[j].u].d = nd[j].d;
 			nd[nd[j].d].u = nd[j].u;
 		}
+		book[i] = 1;
 	}
 }
 
@@ -101,6 +143,7 @@ void resume(int col)
 			nd[nd[j].u].d = j;
 			nd[nd[j].d].u = j;
 		}
+		book[i] = 0;
 	}
 }
 
@@ -151,7 +194,7 @@ int main()
 	while(scanf("%d %d", &n, &m) != EOF)
 	{
 		init();
-		for(i = 0; i < n; i++)
+		for(i = 1; i <= n; i++)
 		{
 			scanf("%d", &c);
 			for(j = 0; j < c; j++)
@@ -169,7 +212,7 @@ int main()
 		else
 		{
 			printf("%d", len);
-			for(i = 0; i < len - 1; i++)
+			for(i = 0; i < len; i++)
 			{
 				printf(" %d", ans[i]);
 			}
