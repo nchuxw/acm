@@ -1,4 +1,5 @@
 /* http://acm.hdu.edu.cn/showproblem.php?pid=3001 */
+/* 用dfs会TLE,这题貌似要用三进制状态压缩dp */
 #include <stdio.h>
 #include <string.h>
 

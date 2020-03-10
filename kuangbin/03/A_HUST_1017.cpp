@@ -1,4 +1,5 @@
 /* http://www.hustoj.org/problem/1017 */
+/* 测试数据通过了，因为oj的问题（HUST OJ不支持特判），无法提交 */
 #include <stdio.h>
 #include <string.h>
 
