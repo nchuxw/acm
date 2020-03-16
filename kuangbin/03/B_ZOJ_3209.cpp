@@ -4,6 +4,8 @@
 
 const int MAX_COLS = 30 * 30 + 10;
 const int MAX_ROWS = 500 + 10;
+// const int MAX_COLS = 20;
+// const int MAX_ROWS = 20;
 
 typedef struct node
 {
@@ -15,42 +17,7 @@ int rows, cols, node_size;
 node nd[MAX_ROWS * MAX_COLS];
 int row_head[MAX_ROWS], col_nds[MAX_COLS];
 
-// int book[MAX_ROWS];
-// int map[MAX_ROWS][MAX_ROWS];
-
-// void print()
-// {
-// 	int i, j;
-
-// 	memset(map, 0, sizeof(map));
-// 	printf("\n    ");
-// 	for(i = nd[0].r; i != 0; i = nd[i].r)
-// 	{
-// 		printf("%3d ", i);
-// 		map[0][i] = 1;
-// 		for(j = nd[i].d; j != i; j = nd[j].d)
-// 		{
-// 			map[nd[j].row][nd[j].col] = 1;
-// 		}
-// 	}
-// 	printf("\n");
-// 	for(i = 1; i <= rows; i++)
-// 	{
-// 		if(book[i] == 1)
-// 		{
-// 			continue;
-// 		}
-// 		printf("%3d ", i);
-// 		for(j = 1; j <= cols; j++)
-// 		{
-// 			if(map[0][j] == 1)
-// 			{
-// 				printf("%3d ", map[i][j]);
-// 			}
-// 		}
-// 		printf("\n");
-// 	}
-// }
+int ans;
 
 void init()
 {
@@ -66,13 +33,11 @@ void init()
 	}
 	nd[0].l = cols;
 	nd[cols].r = 0;
-	memset(col_nds, 0, sizeof(col_nds)); 
+	memset(col_nds, 0, sizeof(col_nds));
 	node_size = cols + 1;
 
 	/* 初始化每一行的行指针 */
 	memset(row_head, -1, sizeof(row_head));
-
-	// memset(book, 0, sizeof(book));
 }
 
 void add_node(int row, int col)
@@ -123,7 +88,6 @@ void remove(int col)
 			nd[nd[j].d].u = nd[j].u;
 			col_nds[nd[j].col]--;
 		}
-		// book[i] = 1;
 	}
 }
 
@@ -144,26 +108,30 @@ void resume(int col)
 			nd[nd[j].d].u = j;
 			col_nds[nd[j].col]++;
 		}
-		// book[i] = 0;
 	}
 }
 
-int dfs(int ans[], int len)
+void dfs(int len)
 {
 	int i, j, res, select_col;
 	int min;
 
+	if(len >= ans)
+	{
+		return ;
+	}
 	/* 当前十字链表没有列 */
 	if(nd[0].r == 0)
 	{
-		return len;
+		ans = len;
+		return ;
 	}
 	min = MAX_ROWS;
 	for(i = nd[0].r; i != 0; i = nd[i].r)
 	{
 		if(nd[i].d == i)
 		{
-			return -1;
+			return ;
 		}
 		if(min > col_nds[i])
 		{
@@ -171,73 +139,30 @@ int dfs(int ans[], int len)
 			min = col_nds[i];
 		}
 	}
-	select_col = nd[0].r;
 	remove(select_col);
-	min = MAX_ROWS;
 	for(i = nd[select_col].d; i != select_col; i = nd[i].d)
 	{
-		ans[len] = nd[i].row;
 		for(j = nd[i].r; j != i; j = nd[j].r)
 		{
 			remove(nd[j].col);
 		}
-		res = dfs(ans, len + 1);
-		if(res >= 0 && res < min)
-		{
-			min = res;
-			continue;
-		}
-		for(j = nd[i].r; j != i; j = nd[j].r)
+		dfs(len + 1);
+		for(j = nd[i].l; j != i; j = nd[j].l)
 		{
 			resume(nd[j].col);
 		}
 	}
 	resume(select_col);
-	if(min == MAX_ROWS)
-	{
-	    return -1;
-	}
-	else
-	{
-	    return min;
-	}
 }
 
 int main()
 {
 	int t, n, m, p, x1, x2, y1, y2;
 	int i, j, k, len;
-	int ans[MAX_ROWS];
 
 	scanf("%d", &t);
 	while(t--)
 	{
-		// scanf("%d %d", &n, &m);
-		// cols = n * m;
-		// rows = cols / 4;
-		// init();
-		// k = 0;
-		// for(y1 = 0; y1 < m; y1 += 2)
-		// {
-		// 	for(x1 = 0; x1 < n; x1 += 2)
-		// 	{
-		// 		x2 = x1 + 2;
-		// 		y2 = y1 + 2;
-		// 		printf("(%d, %d) (%d, %d): ", x1, y1, x2, y2);
-		// 		for(i = y1; i < y2; i++)
-		// 		{
-		// 			for(j = x1; j < x2; j++)
-		// 			{
-		// 				printf("(%d %d) ", k, i * n + j + 1);
-		// 				add_node(k, i * n + j + 1);
-		// 			}
-		// 		}
-		// 		printf("\n");
-		// 		k++;
-		// 	}
-		// }
-		// printf("\n%d\n", k);
-		
 		scanf("%d %d %d", &n, &m, &p);
 		rows = p;
 		cols = n * m;
@@ -249,15 +174,17 @@ int main()
 			{
 				for(j = x1; j < x2; j++)
 				{
-//					printf("%d %d\n", k, i * n + j + 1);
-					add_node(k, i * n + j + 1);
+					add_node(k + 1, i * n + j + 1);
 				}
 			}
 		}
-		// print();
-		
-		len = dfs(ans, 0);
-		printf("%d\n", len);
+		ans = MAX_ROWS;
+		dfs(0);
+		if(ans == MAX_ROWS)
+		{
+			ans = -1;
+		}
+		printf("%d\n", ans);
 	}
 	return 0;
 }

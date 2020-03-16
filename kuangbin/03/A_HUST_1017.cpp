@@ -177,7 +177,7 @@ int dfs(int ans[], int len)
 		{
 			return res;
 		}
-		for(j = nd[i].r; j != i; j = nd[j].r)
+		for(j = nd[i].l; j != i; j = nd[j].l)
 		{
 			resume(nd[j].col);
 		}
