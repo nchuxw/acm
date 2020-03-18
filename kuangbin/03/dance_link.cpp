@@ -1,24 +1,9 @@
-/* http://acm.hdu.edu.cn/showproblem.php?pid=2295 */
-#include <stdio.h>
 #include <string.h>
-#include <math.h>
-
-const int MAX_N = 50 + 5;
-const double EXP = 1e-8;
-
-typedef struct point
-{
-	double x, y;
-	double distance(point b)
-	{
-		return sqrt((x - b.x) * (x - b.x) + (y - b.y) * (y - b.y));
-	}
-} point;
 
 typedef struct dance_link
 {
-	const static int MAX_ROWS = MAX_N;
-	const static int MAX_COLS = MAX_N;
+	const static int MAX_ROWS = 1000;
+	const static int MAX_COLS = 1000;
 
 	typedef struct node
 	{
@@ -90,50 +75,42 @@ typedef struct dance_link
 
 	void remove(int col)
 	{
-		int i;
+		int i, j;
+
+		/* 将第col列从十字链表里移除 */
+		nd[nd[col].l].r = nd[col].r;
+		nd[nd[col].r].l = nd[col].l;
+
+		/* 将与第col列里节点有关的行移除 */
 		for(i = nd[col].d; i != col; i = nd[i].d)
 		{
-			nd[nd[i].l].r = nd[i].r;
-			nd[nd[i].r].l = nd[i].l;
+			for(j = nd[i].r; j != i; j = nd[j].r)
+			{
+				nd[nd[j].u].d = nd[j].d;
+				nd[nd[j].d].u = nd[j].u;
+				col_nds[nd[j].col]--;
+			}
 		}
 	}
 
 	void resume(int col)
 	{
-		int i;
+		int i, j;
+
+		/* 将第col列从十字链表里恢复 */
+		nd[nd[col].l].r = col;
+		nd[nd[col].r].l = col;
+
+		/* 将与第col列里节点有关的行恢复 */
 		for(i = nd[col].d; i != col; i = nd[i].d)
 		{
-			nd[nd[i].l].r = i;
-			nd[nd[i].r].l = i;
-		}
-	}
-
-	/* 计算取得答案最少需要的行数 */
-	int get_min_rows()
-	{
-		int i, j, k, num = 0;
-		bool v[MAX_COLS];
-		
-		for(i = nd[0].r; i != 0; i = nd[i].r)
-		{
-			v[i] = true;
-		}
-		for(i = nd[0].r; i != 0; i = nd[i].r)
-		{
-			if(v[i] == false)
+			for(j = nd[i].r; j != i; j = nd[j].r)
 			{
-				continue;
-			}
-			num++;
-			for(j = nd[i].d; j != i; j = nd[j].d)
-			{
-				for(k = nd[j].r; k != j; k = nd[k].r)
-				{
-					v[nd[k].col] = false;
-				}
+				nd[nd[j].u].d = j;
+				nd[nd[j].d].u = j;
+				col_nds[nd[j].col]++;
 			}
 		}
-		return num;
 	}
 
 	int dfs(int len)
@@ -142,7 +119,7 @@ typedef struct dance_link
 		int res, select_col;
 
 		/* 判断是否超过了界限 */
-		if(limit != -1 && len + get_min_rows() > limit)
+		if(limit != -1 && len > limit)
 		{
 			return -1;
 		}
@@ -163,16 +140,16 @@ typedef struct dance_link
 				select_col = i;
 			}
 		}
+		remove(select_col);
 		for(i = nd[select_col].d; i != select_col; i = nd[i].d)
 		{
 			if(select_rows != NULL)
 			{
 				select_rows[len] = nd[i].row;
 			}
-			remove(i);
 			for(j = nd[i].r; j != i; j = nd[j].r)
 			{
-				remove(j);
+				remove(nd[j].col);
 			}
 			res = dfs(len + 1);
 			if(res >= 0)
@@ -188,10 +165,10 @@ typedef struct dance_link
 			}
 			for(j = nd[i].l; j != i; j = nd[j].l)
 			{
-				resume(j);
+				resume(nd[j].col);
 			}
-			resume(i);
 		}
+		resume(select_col);
 		return ans;
 	}
 
@@ -211,83 +188,3 @@ typedef struct dance_link
 	}
 
 } dance_link;
-
-dance_link dl;
-
-int main()
-{
-	int t, n, m, k;
-	int i, j;
-	double left, right, mid;
-	point city[MAX_N], radar[MAX_N];
-
-	double dist;
-	int len;
-
-	scanf("%d", &t);
-	while(t--)
-	{
-		scanf("%d %d %d", &n, &m, &k);
-		for(i = 0; i < n; i++)
-		{
-			scanf("%lf %lf", &city[i].x, &city[i].y);
-		}
-		for(i = 0; i < m; i++)
-		{
-			scanf("%lf %lf", &radar[i].x, &radar[i].y);
-		}
-
-		left = 0.0;
-		right = 1500.0;
-		while(right - left >= EXP)
-		{
-			mid = (right + left) / 2.0;
-			dl.init(m, n);
-			for(i = 0; i < m; i++)
-			{
-				for(j = 0; j < n; j++)
-				{
-					dist = radar[i].distance(city[j]);
-					if(radar[i].distance(city[j]) <= mid)
-					{
-						dl.add_node(i + 1, j + 1);
-					}
-				}
-			}
-			len = dl.solve(false, NULL, k);
-			if(len != -1 && dl.solve() <= k)
-			{
-				right = mid;
-			}
-			else
-			{
-				left = mid;
-			}
-		}
-		printf("%.6lf\n", right);
-	}
-	return 0;
-}
-
-/*
-
-2
-3 3 2
-3 4
-3 1
-5 4
-1 1
-2 2
-3 3
-
-3 2 2
-0 2
-3 2
-5 2
-2 2
-4 2
-
-2.000000
-2.236068
-
-*/
