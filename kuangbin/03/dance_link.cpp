@@ -1,5 +1,3 @@
-#include <string.h>
-
 typedef struct dance_link
 {
 	const static int MAX_ROWS = 1000;
@@ -18,7 +16,7 @@ typedef struct dance_link
 	bool is_min_ans;
 	int limit;
 	int ans, *select_rows;
-	
+
 	void init(int rows, int cols)
 	{
 		int i;
@@ -32,14 +30,17 @@ typedef struct dance_link
 			nd[i].d = i;
 			nd[i].l = i - 1;
 			nd[i].r = i + 1;
+			col_nds[i] = 0;
 		}
 		nd[0].l = cols;
 		nd[cols].r = 0;
-		memset(col_nds, 0, sizeof(col_nds));
 		node_size = cols + 1;
 
 		/* 初始化每一行的行指针 */
-		memset(row_head, -1, sizeof(row_head));
+		for(i = 0; i <= rows; i++)
+		{
+			row_head[i] = -1;
+		}
 	}
 
 	void add_node(int row, int col)
@@ -123,6 +124,10 @@ typedef struct dance_link
 		{
 			return -1;
 		}
+		if(is_min_ans == true && ans != -1 && len > ans)
+		{
+			return -1;
+		}
 		/* 当前十字链表没有列 */
 		if(nd[0].r == 0)
 		{
@@ -143,7 +148,7 @@ typedef struct dance_link
 		remove(select_col);
 		for(i = nd[select_col].d; i != select_col; i = nd[i].d)
 		{
-			if(select_rows != NULL)
+			if(select_rows != 0)
 			{
 				select_rows[len] = nd[i].row;
 			}
@@ -177,7 +182,7 @@ typedef struct dance_link
 	int select_rows[]: 用于保存选择的行，取NULL时不保存，默认取NULL。
 	int limit：答案的上限，取-1时无上限，默认为-1。
 	*/
-	int solve(bool is_min_ans = true, int select_rows[] = NULL, int limit = -1)
+	int solve(bool is_min_ans = true, int select_rows[] = 0, int limit = -1)
 	{
 		this->is_min_ans = is_min_ans;
 		this->select_rows = select_rows;

@@ -1,24 +1,13 @@
-/* http://acm.hdu.edu.cn/showproblem.php?pid=2295 */
+/* http://acm.fzu.edu.cn/problem.php?pid=1686 */
 #include <stdio.h>
 #include <string.h>
-#include <math.h>
 
-const int MAX_N = 50 + 5;
-const double EXP = 1e-8;
-
-typedef struct point
-{
-	double x, y;
-	double distance(point b)
-	{
-		return sqrt((x - b.x) * (x - b.x) + (y - b.y) * (y - b.y));
-	}
-} point;
+const int MAX_N = 40;
 
 typedef struct dance_link
 {
-	const static int MAX_ROWS = MAX_N;
-	const static int MAX_COLS = MAX_N;
+	const static int MAX_ROWS = MAX_N * MAX_N;
+	const static int MAX_COLS = MAX_N * MAX_N;
 
 	typedef struct node
 	{
@@ -30,9 +19,7 @@ typedef struct dance_link
 	node nd[MAX_ROWS * MAX_COLS];
 	int row_head[MAX_ROWS], col_nds[MAX_COLS];
 
-	bool is_min_ans;
-	int limit;
-	int ans, *select_rows;
+	int ans;
 	
 	void init(int rows, int cols)
 	{
@@ -47,17 +34,20 @@ typedef struct dance_link
 			nd[i].d = i;
 			nd[i].l = i - 1;
 			nd[i].r = i + 1;
+			col_nds[i] = 0;
 		}
 		nd[0].l = cols;
 		nd[cols].r = 0;
-		memset(col_nds, 0, sizeof(col_nds));
 		node_size = cols + 1;
 
 		/* 初始化每一行的行指针 */
-		memset(row_head, -1, sizeof(row_head));
+		for(i = 0; i <= rows; i++)
+		{
+			row_head[i] = -1;
+		}
 	}
 
-	void add_node(int row, int col)
+	inline void add_node(int row, int col)
 	{
 		/* nd[node_size]为新添加的节点 */
 		nd[node_size].row = row;
@@ -88,7 +78,7 @@ typedef struct dance_link
 		node_size++;
 	}
 
-	void remove(int col)
+	inline void remove(int col)
 	{
 		int i;
 		for(i = nd[col].d; i != col; i = nd[i].d)
@@ -98,7 +88,7 @@ typedef struct dance_link
 		}
 	}
 
-	void resume(int col)
+	inline void resume(int col)
 	{
 		int i;
 		for(i = nd[col].d; i != col; i = nd[i].d)
@@ -109,7 +99,7 @@ typedef struct dance_link
 	}
 
 	/* 计算取得答案最少需要的行数 */
-	int get_min_rows()
+	inline int get_min_rows()
 	{
 		int i, j, k, num = 0;
 		bool v[MAX_COLS];
@@ -142,17 +132,15 @@ typedef struct dance_link
 		int res, select_col;
 
 		/* 判断是否超过了界限 */
-		if(limit != -1 && len + get_min_rows() > limit)
-		{
-			return -1;
-		}
-		if(is_min_ans == true && ans != -1 && len + mr > ans)
+		int mr = get_min_rows();
+		if(ans > 0 && len + mr >= ans)
 		{
 			return -1;
 		}
 		/* 当前十字链表没有列 */
 		if(nd[0].r == 0)
 		{
+			ans = len;
 			return len;
 		}
 		select_col = nd[0].r;
@@ -169,27 +157,12 @@ typedef struct dance_link
 		}
 		for(i = nd[select_col].d; i != select_col; i = nd[i].d)
 		{
-			if(select_rows != NULL)
-			{
-				select_rows[len] = nd[i].row;
-			}
 			remove(i);
 			for(j = nd[i].r; j != i; j = nd[j].r)
 			{
 				remove(j);
 			}
-			res = dfs(len + 1);
-			if(res >= 0)
-			{
-				if(is_min_ans == false)
-				{
-					return res;
-				}
-				else if(ans < 0 || ans > res)
-				{
-					ans = res;
-				}
-			}
+			dfs(len + 1);
 			for(j = nd[i].l; j != i; j = nd[j].l)
 			{
 				resume(j);
@@ -198,100 +171,74 @@ typedef struct dance_link
 		}
 		return ans;
 	}
-
-	/*
-	bool is_min_ans: 是否求答案最小值，如果不是，得到一个可行解就返回，默认求最小值。
-	int select_rows[]: 用于保存选择的行，取NULL时不保存，默认取NULL。
-	int limit：答案的上限，取-1时无上限，默认为-1。
-	*/
-	int solve(bool is_min_ans = true, int select_rows[] = NULL, int limit = -1)
-	{
-		this->is_min_ans = is_min_ans;
-		this->select_rows = select_rows;
-		this->limit = limit;
-		ans = -1;
-		ans = dfs(0);
-		return ans;
-	}
-
 } dance_link;
 
 dance_link dl;
 
 int main()
 {
-	int t, n, m, k;
-	int i, j;
-	double left, right, mid;
-	point city[MAX_N], radar[MAX_N];
+	int n, m, n1, m1;
+	int i, j, k, x, y, ans;
+	int map[MAX_N][MAX_N];
 
-	double dist;
-	int len;
-
-	scanf("%d", &t);
-	while(t--)
+	while(scanf("%d %d", &n, &m) != EOF)
 	{
-		scanf("%d %d %d", &n, &m, &k);
+		k = 0;
 		for(i = 0; i < n; i++)
 		{
-			scanf("%lf %lf", &city[i].x, &city[i].y);
-		}
-		for(i = 0; i < m; i++)
-		{
-			scanf("%lf %lf", &radar[i].x, &radar[i].y);
-		}
-
-		left = 0.0;
-		right = 1500.0;
-		while(right - left >= EXP)
-		{
-			mid = (right + left) / 2.0;
-			dl.init(m, n);
-			for(i = 0; i < m; i++)
+			for(j = 0; j < m; j++)
 			{
-				for(j = 0; j < n; j++)
+				scanf("%d", &map[i][j]);
+				if(map[i][j] != 0)
 				{
-					dist = radar[i].distance(city[j]);
-					if(radar[i].distance(city[j]) <= mid)
-					{
-						dl.add_node(i + 1, j + 1);
-					}
+					k++;
+					map[i][j] = k;
 				}
 			}
-			len = dl.solve(false, NULL, k);
-			if(len != -1 && dl.solve() <= k)
+		}
+		scanf("%d %d", &n1, &m1);
+
+		dl.init((n - n1 + 1) * (m - m1 + 1), k);
+		k = 0;
+		for(x = 0; x + n1 <= n; x++)
+		{
+			for(y = 0; y + m1 <= m; y++)
 			{
-				right = mid;
-			}
-			else
-			{
-				left = mid;
+				for(i = x; i < x + n1; i++)
+				{
+					for(j = y; j < y + m1; j++)
+					{
+						if(map[i][j] != 0)
+						{
+							dl.add_node(k + 1, map[i][j]);
+						}
+					}
+				}
+				k++;
 			}
 		}
-		printf("%.6lf\n", right);
+
+		dl.ans = -1;
+		ans = dl.dfs(0);
+		printf("%d\n", ans);
 	}
 	return 0;
 }
 
 /*
-
-2
-3 3 2
-3 4
-3 1
-5 4
-1 1
+4 4
+1 0 0 1
+0 1 1 0
+0 1 1 0
+1 0 0 1
 2 2
-3 3
-
-3 2 2
-0 2
-3 2
-5 2
+4 4 
+0 0 0 0
+0 1 1 0
+0 1 1 0
+0 0 0 0
 2 2
-4 2
 
-2.000000
-2.236068
-
+4
+1
 */
