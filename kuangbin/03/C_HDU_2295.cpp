@@ -47,14 +47,17 @@ typedef struct dance_link
 			nd[i].d = i;
 			nd[i].l = i - 1;
 			nd[i].r = i + 1;
+			col_nds[i] = 0;
 		}
 		nd[0].l = cols;
 		nd[cols].r = 0;
-		memset(col_nds, 0, sizeof(col_nds));
 		node_size = cols + 1;
 
 		/* 初始化每一行的行指针 */
-		memset(row_head, -1, sizeof(row_head));
+		for(i = 0; i <= rows; i++)
+		{
+			row_head[i] = -1;
+		}
 	}
 
 	void add_node(int row, int col)
@@ -93,15 +96,15 @@ typedef struct dance_link
 		int i;
 		for(i = nd[col].d; i != col; i = nd[i].d)
 		{
-			nd[nd[i].l].r = nd[i].r;
 			nd[nd[i].r].l = nd[i].l;
+			nd[nd[i].l].r = nd[i].r;
 		}
 	}
 
 	void resume(int col)
 	{
 		int i;
-		for(i = nd[col].d; i != col; i = nd[i].d)
+		for(i = nd[col].u; i != col; i = nd[i].u)
 		{
 			nd[nd[i].l].r = i;
 			nd[nd[i].r].l = i;
@@ -142,11 +145,12 @@ typedef struct dance_link
 		int res, select_col;
 
 		/* 判断是否超过了界限 */
-		if(limit != -1 && len + get_min_rows() > limit)
+		int mr = get_min_rows();
+		if(limit != -1 && len + mr > limit)
 		{
 			return -1;
 		}
-		if(is_min_ans == true && ans != -1 && len + mr > ans)
+		if(is_min_ans == true && ans != -1 && len + mr >= ans)
 		{
 			return -1;
 		}

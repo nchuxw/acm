@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-const int MAX_N = 40;
+const int MAX_N = 17;
 
 typedef struct dance_link
 {
@@ -19,7 +19,9 @@ typedef struct dance_link
 	node nd[MAX_ROWS * MAX_COLS];
 	int row_head[MAX_ROWS], col_nds[MAX_COLS];
 
-	int ans;
+	bool is_min_ans;
+	int limit;
+	int ans, *select_rows;
 	
 	void init(int rows, int cols)
 	{
@@ -47,7 +49,7 @@ typedef struct dance_link
 		}
 	}
 
-	inline void add_node(int row, int col)
+	void add_node(int row, int col)
 	{
 		/* nd[node_size]为新添加的节点 */
 		nd[node_size].row = row;
@@ -78,20 +80,20 @@ typedef struct dance_link
 		node_size++;
 	}
 
-	inline void remove(int col)
+	void remove_rep(int col)
 	{
 		int i;
 		for(i = nd[col].d; i != col; i = nd[i].d)
 		{
-			nd[nd[i].l].r = nd[i].r;
 			nd[nd[i].r].l = nd[i].l;
+			nd[nd[i].l].r = nd[i].r;
 		}
 	}
 
-	inline void resume(int col)
+	void resume_rep(int col)
 	{
 		int i;
-		for(i = nd[col].d; i != col; i = nd[i].d)
+		for(i = nd[col].u; i != col; i = nd[i].u)
 		{
 			nd[nd[i].l].r = i;
 			nd[nd[i].r].l = i;
@@ -99,7 +101,7 @@ typedef struct dance_link
 	}
 
 	/* 计算取得答案最少需要的行数 */
-	inline int get_min_rows()
+	int get_min_rows()
 	{
 		int i, j, k, num = 0;
 		bool v[MAX_COLS];
@@ -126,21 +128,24 @@ typedef struct dance_link
 		return num;
 	}
 
-	int dfs(int len)
+	int dfs_rep(int len)
 	{
 		int i, j;
 		int res, select_col;
 
 		/* 判断是否超过了界限 */
 		int mr = get_min_rows();
-		if(ans > 0 && len + mr >= ans)
+		if(limit != -1 && len + mr > limit)
+		{
+			return -1;
+		}
+		if(is_min_ans == true && ans != -1 && len + mr >= ans)
 		{
 			return -1;
 		}
 		/* 当前十字链表没有列 */
 		if(nd[0].r == 0)
 		{
-			ans = len;
 			return len;
 		}
 		select_col = nd[0].r;
@@ -157,20 +162,51 @@ typedef struct dance_link
 		}
 		for(i = nd[select_col].d; i != select_col; i = nd[i].d)
 		{
-			remove(i);
+			if(select_rows != NULL)
+			{
+				select_rows[len] = nd[i].row;
+			}
+			remove_rep(i);
 			for(j = nd[i].r; j != i; j = nd[j].r)
 			{
-				remove(j);
+				remove_rep(j);
 			}
-			dfs(len + 1);
+			res = dfs_rep(len + 1);
+			if(res >= 0)
+			{
+				if(is_min_ans == false)
+				{
+					return res;
+				}
+				else if(ans < 0 || ans > res)
+				{
+					ans = res;
+				}
+			}
 			for(j = nd[i].l; j != i; j = nd[j].l)
 			{
-				resume(j);
+				resume_rep(j);
 			}
-			resume(i);
+			resume_rep(i);
 		}
 		return ans;
 	}
+
+	/*
+	bool is_min_ans: 是否求答案最小值，如果不是，得到一个可行解就返回，默认求最小值。
+	int select_rows[]: 用于保存选择的行，取NULL时不保存，默认取NULL。
+	int limit：答案的上限，取-1时无上限，默认为-1。
+	*/
+	int solve(bool is_min_ans = true, int select_rows[] = NULL, int limit = -1)
+	{
+		this->is_min_ans = is_min_ans;
+		this->select_rows = select_rows;
+		this->limit = limit;
+		ans = -1;
+		ans = dfs_rep(0);
+		return ans;
+	}
+
 } dance_link;
 
 dance_link dl;
@@ -218,8 +254,7 @@ int main()
 			}
 		}
 
-		dl.ans = -1;
-		ans = dl.dfs(0);
+		ans = dl.solve(true);
 		printf("%d\n", ans);
 	}
 	return 0;
@@ -238,7 +273,26 @@ int main()
 0 1 1 0
 0 0 0 0
 2 2
+15 15
+1 0 0 1 0 1 1 0 0 1 1 0 1 0 0
+1 0 0 1 0 1 1 0 0 1 1 0 1 0 0
+1 0 0 1 0 1 1 0 0 1 1 0 1 0 0
+1 0 0 1 0 1 1 0 0 1 1 0 1 0 0
+1 0 0 1 0 1 1 0 0 1 1 0 1 0 0
+1 0 0 1 0 1 1 0 0 1 1 0 1 0 0
+1 0 0 1 0 1 1 0 0 1 1 0 1 0 0
+1 0 0 1 0 1 1 0 0 1 1 0 1 0 0
+1 0 0 1 0 1 1 0 0 1 1 0 1 0 0
+1 0 0 1 0 1 1 0 0 1 1 0 1 0 0
+1 0 0 1 0 1 1 0 0 1 1 0 1 0 0
+1 0 0 1 0 1 1 0 0 1 1 0 1 0 0
+1 0 0 1 0 1 1 0 0 1 1 0 1 0 0
+1 0 0 1 0 1 1 0 0 1 1 0 1 0 0
+1 0 0 1 0 1 1 0 0 1 1 0 1 0 0
+2 2
 
 4
 1
+40
+
 */

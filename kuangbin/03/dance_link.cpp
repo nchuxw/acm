@@ -94,6 +94,16 @@ typedef struct dance_link
 		}
 	}
 
+	void remove_rep(int col)
+	{
+		int i;
+		for(i = nd[col].d; i != col; i = nd[i].d)
+		{
+			nd[nd[i].r].l = nd[i].l;
+			nd[nd[i].l].r = nd[i].r;
+		}
+	}
+
 	void resume(int col)
 	{
 		int i, j;
@@ -112,6 +122,108 @@ typedef struct dance_link
 				col_nds[nd[j].col]++;
 			}
 		}
+	}
+
+	void resume_rep(int col)
+	{
+		int i;
+		for(i = nd[col].u; i != col; i = nd[i].u)
+		{
+			nd[nd[i].l].r = i;
+			nd[nd[i].r].l = i;
+		}
+	}
+
+	/* 计算取得答案最少需要的行数 */
+	int get_min_rows()
+	{
+		int i, j, k, num = 0;
+		bool v[MAX_COLS];
+		
+		for(i = nd[0].r; i != 0; i = nd[i].r)
+		{
+			v[i] = true;
+		}
+		for(i = nd[0].r; i != 0; i = nd[i].r)
+		{
+			if(v[i] == false)
+			{
+				continue;
+			}
+			num++;
+			for(j = nd[i].d; j != i; j = nd[j].d)
+			{
+				for(k = nd[j].r; k != j; k = nd[k].r)
+				{
+					v[nd[k].col] = false;
+				}
+			}
+		}
+		return num;
+	}
+
+	int dfs_rep(int len)
+	{
+		int i, j;
+		int res, select_col;
+
+		/* 判断是否超过了界限 */
+		int mr = get_min_rows();
+		if(limit != -1 && len + mr > limit)
+		{
+			return -1;
+		}
+		if(is_min_ans == true && ans != -1 && len + mr >= ans)
+		{
+			return -1;
+		}
+		/* 当前十字链表没有列 */
+		if(nd[0].r == 0)
+		{
+			return len;
+		}
+		select_col = nd[0].r;
+		for(i = nd[0].r; i != 0; i = nd[i].r)
+		{
+			if(nd[i].d == i)
+			{
+				return -1;
+			}
+			if(col_nds[select_col] > col_nds[i])
+			{
+				select_col = i;
+			}
+		}
+		for(i = nd[select_col].d; i != select_col; i = nd[i].d)
+		{
+			if(select_rows != 0)
+			{
+				select_rows[len] = nd[i].row;
+			}
+			remove_rep(i);
+			for(j = nd[i].r; j != i; j = nd[j].r)
+			{
+				remove_rep(j);
+			}
+			res = dfs_rep(len + 1);
+			if(res >= 0)
+			{
+				if(is_min_ans == false)
+				{
+					return res;
+				}
+				else if(ans < 0 || ans > res)
+				{
+					ans = res;
+				}
+			}
+			for(j = nd[i].l; j != i; j = nd[j].l)
+			{
+				resume_rep(j);
+			}
+			resume_rep(i);
+		}
+		return ans;
 	}
 
 	int dfs(int len)
@@ -182,13 +294,20 @@ typedef struct dance_link
 	int select_rows[]: 用于保存选择的行，取NULL时不保存，默认取NULL。
 	int limit：答案的上限，取-1时无上限，默认为-1。
 	*/
-	int solve(bool is_min_ans = true, int select_rows[] = 0, int limit = -1)
+	int solve(bool is_min_ans = true, bool is_repeat = false, int select_rows[] = 0, int limit = -1)
 	{
 		this->is_min_ans = is_min_ans;
 		this->select_rows = select_rows;
 		this->limit = limit;
 		ans = -1;
-		ans = dfs(0);
+		if(is_repeat == false)
+		{
+			ans = dfs(0);
+		}
+		else
+		{
+			ans = dfs_rep(0);
+		}
 		return ans;
 	}
 
