@@ -291,6 +291,7 @@ typedef struct dance_link
 
 	/*
 	bool is_min_ans: 是否求答案最小值，如果不是，得到一个可行解就返回，默认求最小值。
+	bool is_repeat：是否是重复覆盖问题，默认求不重复精确覆盖问题。
 	int select_rows[]: 用于保存选择的行，取NULL时不保存，默认取NULL。
 	int limit：答案的上限，取-1时无上限，默认为-1。
 	*/
