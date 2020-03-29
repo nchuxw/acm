@@ -1,13 +1,14 @@
 /* https://zoj.pintia.cn/problem-sets/91827364500/problems/91827367537 */
+/* AC 201ms	640kb */
 #include <stdio.h>
 
-const int MAX_N = 17;
+const int MAX_N = 16;
 
 /* 舞蹈链算法，用于求不重复精确覆盖问题 */
 typedef struct dance_link
 {
-	const static int MAX_ROWS = MAX_N * MAX_N * MAX_N;
-	const static int MAX_COLS = MAX_N * MAX_N * 4;
+	const static int MAX_ROWS = MAX_N * MAX_N * MAX_N + 10;
+	const static int MAX_COLS = MAX_N * MAX_N * 4 + 10;
 
 	typedef struct node
 	{
@@ -16,7 +17,7 @@ typedef struct dance_link
 	} node;
 
 	int rows, cols, node_size;
-	node nd[(MAX_ROWS + 1) * MAX_COLS + 1];
+	node nd[(MAX_ROWS + 1) * MAX_COLS];
 	int row_head[MAX_ROWS], col_nds[MAX_COLS];
 
 	bool is_min_ans;
@@ -204,26 +205,30 @@ dance_link dl;
 
 int main()
 {
-	int i, j, k, row;
+	int i, j, k, t, row;
 	char str[MAX_N + 10][MAX_N + 10];
 	int x[dl.MAX_ROWS], y[dl.MAX_ROWS], num[dl.MAX_ROWS], ans[dl.MAX_ROWS], ansl;
 
-	while(true)
+	for(t = 0; ; t++)
 	{
 		for(i = 0; i < 16; i++)
 		{
-			if(fgets(str[i], MAX_N + 10, stdin) == NULL)
+			if(scanf("%s", str[i]) == EOF)
 			{
 				break;
 			}
 		}
-		getchar();
 		if(i < 16)
 		{
 			break;
 		}
+		if(t != 0)
+		{
+			printf("\n");
+		}
+
 		dl.init(16 * 16 * 16, 4 * 16 * 16);
-		row = 0;
+		row = 1;
 		for(i = 0; i < 16; i++)
 		{
 			for(j = 0; j < 16; j++)
@@ -235,6 +240,10 @@ int main()
 					dl.add_node(row, 256 + i * 16 + k + 1);
 					dl.add_node(row, 512 + j * 16 + k + 1);
 					dl.add_node(row, 768 + (i / 4 * 4 + j / 4) * 16 + k + 1);
+					// printf("(%d,%d) ", row, i * 16 + j + 1);
+					// printf("(%d,%d) ", row, 256 + i * 16 + k + 1);
+					// printf("(%d,%d) ", row, 512 + j * 16 + k + 1);
+					// printf("(%d,%d)\n", row, 768 + (i / 4 * 4 + j / 4) * 16 + k + 1);
 					x[row] = i;
 					y[row] = j;
 					num[row] = k;
@@ -248,6 +257,10 @@ int main()
 						dl.add_node(row, 256 + i * 16 + k + 1);
 						dl.add_node(row, 512 + j * 16 + k + 1);
 						dl.add_node(row, 768 + (i / 4 * 4 + j / 4) * 16 + k + 1);
+						// printf("(%d,%d) ", row, i * 16 + j + 1);
+						// printf("(%d,%d) ", row, 256 + i * 16 + k + 1);
+						// printf("(%d,%d) ", row, 512 + j * 16 + k + 1);
+						// printf("(%d,%d)\n", row, 768 + (i / 4 * 4 + j / 4) * 16 + k + 1);
 						x[row] = i;
 						y[row] = j;
 						num[row] = k;
@@ -259,7 +272,7 @@ int main()
 		ansl = dl.solve(false, ans);
 		for(i = 0; i < ansl; i++)
 		{
-			str[x[i]][y[i]] = (char)(num[i] + 'A');
+			str[x[ans[i]]][y[ans[i]]] = (char)('A' + num[ans[i]]);
 		}
 		for(i = 0; i < 16; i++)
 		{
