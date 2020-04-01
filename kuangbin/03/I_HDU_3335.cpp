@@ -140,7 +140,7 @@ typedef struct dance_link_rep
 		{
 			return -1;
 		}
-		if(is_min_ans == true && ans != -1 && len + mr >= ans)
+		if(is_min_ans == true && ans != -1 && len + mr < ans)
 		{
 			return -1;
 		}
@@ -186,7 +186,7 @@ typedef struct dance_link_rep
 				{
 					return res;
 				}
-				else if(ans < 0 || ans > res)
+				else if(ans < 0 || ans < res)
 				{
 					ans = res;
 				}
@@ -216,3 +216,37 @@ typedef struct dance_link_rep
 	}
 
 } dance_link_rep;
+
+dance_link_rep dl;
+
+int main()
+{
+	int t, n;
+	int i, j, ans;
+	int a[MAX_N];
+
+	scanf("%d", &t);
+	while(t--)
+	{
+		scanf("%d", &n);
+		for(i = 1; i <= n; i++)
+		{
+			scanf("%d", &a[i]);
+		}
+
+		dl.init(n, n);
+		for(i = 1; i <= n; i++)
+		{
+			for(j = 1; j <= n; j++)
+			{
+				if(a[i] % a[j] == 0 || a[j] % a[i] == 0)
+				{
+					dl.add_node(i, j);
+				}
+			}
+		}
+		ans = dl.solve(true);
+		printf("%d\n", ans);
+	}
+	return 0;
+}
