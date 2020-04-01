@@ -302,8 +302,8 @@ typedef struct dance_link_rep
 		}
 	}
 
-	/* 计算取得答案最少需要的行数 */
-	int get_min_rows()
+	/* 这个函数是用来剪枝优化的，具体不是很懂 */
+	int get_rows()
 	{
 		int i, j, k, num = 0;
 		bool v[MAX_COLS];
@@ -336,7 +336,7 @@ typedef struct dance_link_rep
 		int res, select_col;
 
 		/* 判断是否超过了界限 */
-		int mr = get_min_rows();
+		int mr = get_rows();
 		if(limit != -1 && len + mr > limit)
 		{
 			return -1;

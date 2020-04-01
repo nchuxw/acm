@@ -1,4 +1,5 @@
 /* http://acm.hdu.edu.cn/showproblem.php?pid=3335 */
+/* AC 15MS 1252K */
 #include <stdio.h>
 
 const int MAX_N = 1000 + 10;
@@ -19,10 +20,7 @@ typedef struct dance_link_rep
 	node nd[MAX_ROWS * MAX_COLS];
 	int row_head[MAX_ROWS], col_nds[MAX_COLS];
 
-	int path[MAX_ROWS];
-	bool is_min_ans;
-	int limit;
-	int ans, *select_rows;
+	int ans;
 
 	void init(int rows, int cols)
 	{
@@ -101,8 +99,7 @@ typedef struct dance_link_rep
 		}
 	}
 
-	/* 计算取得答案最少需要的行数 */
-	int get_min_rows()
+	int get_rows()
 	{
 		int i, j, k, num = 0;
 		bool v[MAX_COLS];
@@ -134,25 +131,17 @@ typedef struct dance_link_rep
 		int i, j;
 		int res, select_col;
 
-		/* 判断是否超过了界限 */
-		int mr = get_min_rows();
-		if(limit != -1 && len + mr > limit)
-		{
-			return -1;
-		}
-		if(is_min_ans == true && ans != -1 && len + mr < ans)
+		int mr = get_rows();
+		if(ans != -1 && len + mr < ans)
 		{
 			return -1;
 		}
 		/* 当前十字链表没有列 */
 		if(nd[0].r == 0)
 		{
-			if(select_rows != 0)
+			if(ans < len)
 			{
-				for(i = 0; i < len; i++)
-				{
-					select_rows[i] = path[i];
-				}
+				ans = len;
 			}
 			return len;
 		}
@@ -170,27 +159,12 @@ typedef struct dance_link_rep
 		}
 		for(i = nd[select_col].d; i != select_col; i = nd[i].d)
 		{
-			if(select_rows != 0)
-			{
-				path[len] = nd[i].row;
-			}
 			remove(i);
 			for(j = nd[i].r; j != i; j = nd[j].r)
 			{
 				remove(j);
 			}
-			res = dfs(len + 1);
-			if(res >= 0)
-			{
-				if(is_min_ans == false)
-				{
-					return res;
-				}
-				else if(ans < 0 || ans < res)
-				{
-					ans = res;
-				}
-			}
+			dfs(len + 1);
 			for(j = nd[i].l; j != i; j = nd[j].l)
 			{
 				resume(j);
@@ -200,18 +174,10 @@ typedef struct dance_link_rep
 		return ans;
 	}
 
-	/*
-	bool is_min_ans: 是否求答案最小值，如果不是，得到一个可行解就返回，默认求最小值。
-	int select_rows[]: 用于保存选择的行，取NULL时不保存，默认取NULL。
-	int limit：答案的上限，取-1时无上限，默认为-1。
-	*/
-	int solve(bool is_min_ans = true, int select_rows[] = 0, int limit = -1)
+	int solve()
 	{
-		this->is_min_ans = is_min_ans;
-		this->select_rows = select_rows;
-		this->limit = limit;
 		ans = -1;
-		ans = dfs(0);
+		dfs(0);
 		return ans;
 	}
 
@@ -223,7 +189,7 @@ int main()
 {
 	int t, n;
 	int i, j, ans;
-	int a[MAX_N];
+	long long a[MAX_N];
 
 	scanf("%d", &t);
 	while(t--)
@@ -231,7 +197,7 @@ int main()
 		scanf("%d", &n);
 		for(i = 1; i <= n; i++)
 		{
-			scanf("%d", &a[i]);
+			scanf("%lld", &a[i]);
 		}
 
 		dl.init(n, n);
@@ -245,7 +211,7 @@ int main()
 				}
 			}
 		}
-		ans = dl.solve(true);
+		ans = dl.solve();
 		printf("%d\n", ans);
 	}
 	return 0;
