@@ -14,6 +14,7 @@ typedef struct dance_link
 	node nd[MAX_ROWS * MAX_COLS];
 	int row_head[MAX_ROWS], col_nds[MAX_COLS];
 
+	int path[MAX_ROWS];
 	bool is_min_ans;
 	int limit;
 	int ans, *select_rows;
@@ -132,6 +133,13 @@ typedef struct dance_link
 		/* 当前十字链表没有列 */
 		if(nd[0].r == 0)
 		{
+			if(select_rows != 0)
+			{
+				for(i = 0; i < len; i++)
+				{
+					select_rows[i] = path[i];
+				}
+			}
 			return len;
 		}
 		select_col = nd[0].r;
@@ -151,7 +159,7 @@ typedef struct dance_link
 		{
 			if(select_rows != 0)
 			{
-				select_rows[len] = nd[i].row;
+				path[len] = nd[i].row;
 			}
 			for(j = nd[i].r; j != i; j = nd[j].r)
 			{
@@ -212,6 +220,7 @@ typedef struct dance_link_rep
 	node nd[MAX_ROWS * MAX_COLS];
 	int row_head[MAX_ROWS], col_nds[MAX_COLS];
 
+	int path[MAX_ROWS];
 	bool is_min_ans;
 	int limit;
 	int ans, *select_rows;
@@ -293,8 +302,8 @@ typedef struct dance_link_rep
 		}
 	}
 
-	/* 计算取得答案最少需要的行数 */
-	int get_min_rows()
+	/* 这个函数是用来剪枝优化的，具体不是很懂 */
+	int get_rows()
 	{
 		int i, j, k, num = 0;
 		bool v[MAX_COLS];
@@ -327,7 +336,7 @@ typedef struct dance_link_rep
 		int res, select_col;
 
 		/* 判断是否超过了界限 */
-		int mr = get_min_rows();
+		int mr = get_rows();
 		if(limit != -1 && len + mr > limit)
 		{
 			return -1;
@@ -339,6 +348,13 @@ typedef struct dance_link_rep
 		/* 当前十字链表没有列 */
 		if(nd[0].r == 0)
 		{
+			if(select_rows != 0)
+			{
+				for(i = 0; i < len; i++)
+				{
+					select_rows[i] = path[i];
+				}
+			}
 			return len;
 		}
 		select_col = nd[0].r;
@@ -357,7 +373,7 @@ typedef struct dance_link_rep
 		{
 			if(select_rows != 0)
 			{
-				select_rows[len] = nd[i].row;
+				path[len] = nd[i].row;
 			}
 			remove(i);
 			for(j = nd[i].r; j != i; j = nd[j].r)
