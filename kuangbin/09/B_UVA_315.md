@@ -1,3 +1,14 @@
+# 题目
+&emsp;&emsp;<https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=251>
+
+# 题意
+&emsp;&emsp;给出一张无向图，求图中割点的个数。割点是指删除该点后，其他点之间的连通性会受到影响的点。
+
+# 题目解析
+&emsp;&emsp;用tarjan算法来解决，这题的输入有点麻烦，因为输入的问题runtime error了好几次。
+
+# 代码
+```cpp
 /* https://cn.vjudge.net/contest/67418#problem/B */
 #include <stdio.h>
 #include <string.h>
@@ -88,19 +99,4 @@ int main()
 	return 0;
 }
 
-/*
-
-5
-5 1 2 3 4
-0
-6
-2 1 3
-5 4 6 2
-0
-0
-
-
-1
-2
-
-*/
+```
