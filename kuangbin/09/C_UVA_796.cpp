@@ -1,9 +1,11 @@
+/* https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=737 */
 #include <stdio.h>
 #include <string.h>
+#include <algorithm>
 #define min(a, b) (a < b) ? a : b
 
-// const int MAX_N = 1000 + 10;
-const int MAX_N = 10;
+const int MAX_N = 1000 + 10;
+// const int MAX_N = 10;
 
 typedef struct node
 {
@@ -15,6 +17,18 @@ typedef struct edge
 {
 	int a, b;
 } edge;
+
+int cmp(edge a, edge b)
+{
+	if(a.a != b.a)
+	{
+		return a.a < b.a;
+	}
+	else
+	{
+		return a.b < b.b;
+	}
+}
 
 int n, bn;
 node e[2 * MAX_N * MAX_N];
@@ -36,17 +50,25 @@ void tarjan(int v, int pre)
 		if(vis[b] == 0)
 		{
 			tarjan(b, v);
-			min(low[v], low[b]);
+			low[v] = min(low[v], low[b]);
 			if(low[b] > vis[v])
 			{
-				bridge[bn].a = v;
-				bridge[bn].b = b;
+				if(v < b)
+				{
+					bridge[bn].a = v;
+					bridge[bn].b = b;
+				}
+				else
+				{
+					bridge[bn].a = b;
+					bridge[bn].b = v;
+				}
 				bn++;
 			}
 		}
 		else if(b != pre)
 		{
-			min(low[v], vis[b]);
+			low[v] = min(low[v], vis[b]);
 		}
 	}
 }
@@ -92,6 +114,7 @@ int main()
 			}
 		}
 		
+		std::sort(bridge, bridge + bn, cmp);
 		printf("%d critical links\n", bn);
 		for(i = 0; i < bn; i++)
 		{

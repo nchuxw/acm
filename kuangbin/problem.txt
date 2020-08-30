@@ -132,7 +132,7 @@ N SPOJ HIGH Highways
 专题九 连通图  https://cn.vjudge.net/contest/67418
 A POJ 1236 Network of Schools  http://poj.org/problem?id=1236
 B UVA 315 Network
-C UVA 796 Critical Links
+C UVA 796 Critical Links https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=737
 D POJ 3694 Network  http://poj.org/problem?id=3694
 E POJ 3177 Redundant Paths  http://poj.org/problem?id=3177
 F HDU 4612 Warm up  http://acm.hdu.edu.cn/showproblem.php?pid=4612
